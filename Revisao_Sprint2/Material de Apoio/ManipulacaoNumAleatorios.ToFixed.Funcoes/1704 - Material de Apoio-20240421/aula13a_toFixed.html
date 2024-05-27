@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Analise os resultados abaixo e diga o que está acontecendo</h2>
+    <button onclick="sortear()">Sortear</button> <br><br>
+    <div id="div_result"></div>
+</body>
+
+</html>
+<script>
+    function sortear() {
+
+    /*  Uma das formas que temos para arredondar números no Javascript é com .toFixed()
+        .toFixed(x) -> arredonda o número para x casas decimais
+
+        O .toFixed(x) devolve um TEXTO com o número arredondado. Por Exemplo:
+            var ax_qtde = 7.9591 ;
+            ax_qtde.toFixed(2); // isso dá "7.96" (entre aspas mesmo, é um texto)
+
+        Portando, NÃO use o .toFixed(x) no meio de cálculos! Use apenas no final, 
+        no momento que for exibir o resultado final de um cálculo ao usuário.
+        Se for necessário usar o número arredondado em algum cálculo use também o
+        Number()
+    */
+        var ax_num = Math.random();
+        div_result.innerHTML += `Número sorteado = ${(ax_num)} - Arredondado com 1 decimal <b> ${ax_num.toFixed(1)} </b>- Arredondado sem decimal <b>${ax_num.toFixed()} </b> <br> `;
+    }
+</script>

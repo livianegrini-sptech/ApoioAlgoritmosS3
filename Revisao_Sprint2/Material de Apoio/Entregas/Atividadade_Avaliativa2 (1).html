@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece</title>
+</head>
+
+<body>
+    Qual o episódio deseja começar a assistir a série: <input id="input_episodioInicio" type="number"> <br><br>
+    Quantidade de tempo disponível: <input id="input_tempoDisponivel" type="number"> <br><br>
+    Unidade de tempo em:
+    <select id="select_unidadeTempo">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Horas</option>
+        <option value="2">Minutos</option>
+    </select> <br><br>
+    Pular a abertura?
+    <select id="select_pularAbertura">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
+    </select> <br><br>
+    Pular encerramento?
+    <select id="select_pularEncerramento">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
+    </select> <br><br>
+    <button onclick="Validar()">Assistir Episódios</button><br><br>
+    <div id="div_exibir"></div>
+
+</html>
+<script>
+    function Validar() {
+        var EpisodioInicial = Number(input_episodioInicio.value)
+        var TempoDisponivel = Number(input_tempoDisponivel.value);
+        var UnidadeTempo = select_unidadeTempo.value;
+        var PularAbertura = select_pularAbertura.value;
+        var PularEncerramento = select_pularEncerramento.value;
+        var TempoEpisodio = 0;
+
+        if (EpisodioInicial > 0 && EpisodioInicial <= 1100) {
+            if (UnidadeTempo == '1') {
+                TempoDisponivel = TempoDisponivel * 60;
+            } else {
+                TempoDisponivel = TempoDisponivel;
+            }
+            if (PularAbertura == '1' && PularEncerramento == '1') {
+                TempoEpisodio = 20;
+            }
+            else if (PularAbertura == '1' && PularEncerramento == '2') {
+                TempoEpisodio = 22;
+            }
+            else if (PularAbertura == '2' && PularEncerramento == '1') {
+                TempoEpisodio = 22;
+            }else{
+                TempoEpisodio = 24;
+            }
+
+            var DuracaoTotal = TempoEpisodio;
+            var Episodios = TempoDisponivel / TempoEpisodio;
+
+            for (var index = EpisodioInicial; TempoDisponivel > 0; index++) {
+                div_exibir.innerHTML += `<br>Episódio: ${index} <br>`
+
+                for (var index2 = 1; index2 <= DuracaoTotal && TempoDisponivel > 0; index2++) {
+
+                    TempoDisponivel = TempoDisponivel - 1
+
+                    if (TempoEpisodio == 24) {
+                        if (index2 >= 1 && index2 <= 2) {
+                            div_exibir.innerHTML += `Minuto ${index2}: Assistindo Abertura<br>`
+                        } else if (index2 >= 23 && index2 <= 24) {
+                            div_exibir.innerHTML += `Minuto ${index2}: Assistindo Encerramento<br>`
+                        } else {
+                            div_exibir.innerHTML += `Minuto ${index2}: Assistindo o Episódio<br>`
+                        }
+                    }
+                    if (TempoEpisodio == 22) {
+                        if (PularAbertura == '1' && PularEncerramento == '2') {
+                            if (index2 >= 1 && index2 <= 20) {
+                                div_exibir.innerHTML += `Minuto ${index2}: Assistindo o Episódio<br>`
+                            } else {
+                                div_exibir.innerHTML += `Minuto ${index2}: Assistindo Encerramento<br>`
+                            }
+                        } else if (index2 >= 1 && index2 < 3) {
+                            div_exibir.innerHTML += `Minuto ${index2}: Assistindo Abertura<br>`
+
+                        } else {
+                            div_exibir.innerHTML += `Minuto ${index2}: Assistindo o Episódio<br>`
+                        }
+                    }
+                    if (TempoEpisodio == 20) {
+                        div_exibir.innerHTML += `Minuto ${index2}: Assistindo o Episódio<br>`
+                    }
+                }
+            }
+            div_exibir.innerHTML += `<br>Fim dos episódios!<br>`
+            div_exibir.innerHTML += `Episódios assistidos: ${Episodios} episódios<br><br><br>`
+
+        } else {
+            alert("O número do episódio é inválido");
+        }
+    }
+
+</script>

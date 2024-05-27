@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">S2 pares</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function exibir() {
+        // percorre todos os números de 0 a 100, incrementando de 1 em 1 a cada repetição
+        for (var index = 0; index <= 100; index++) {
+            var resto = index % 2; // a cada repetição, obtém o resto da divisão do índice atual por 2
+
+            if (resto == 0) { // se o resto da divisão por 2 for 0, significa que é um número múltiplo de 2 (ou seja, PAR!)
+                div_mensagem.innerHTML += `${index} <br>`;
+            }
+        }
+    }
+</script>

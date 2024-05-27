@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 03</title>
+</head>
+
+<body>
+    <h1>Bairros</h1>
+    Bairro: <input id="input_bairro" type="text">
+    <button onclick="CadastrarBairro()">Cadastrar Bairro</button> <br><br>
+    Número: <input id="input_numero" type="text">
+    <button onclick="AnalisarBairros()">Relembrar Moradia</button> <br><br>
+    <div id="div_msg"></div>
+
+</body>
+
+</html>
+<script>
+    var ListaBairros = [];
+
+    function CadastrarBairro() {
+        var Bairro = input_bairro.value;
+        ListaBairros.push(Bairro);
+        div_msg.innerHTML = `Bairro Cadastrado!`
+    }
+
+    function AnalisarBairros() {
+        var Numero = Number(input_numero.value);
+
+        if (Numero >= 1) {
+            if (Numero <= ListaBairros.length) {
+                var BairroMostrar = ListaBairros[Numero - 1];
+                div_msg.innerHTML = `${BairroMostrar}`;
+            } else {
+                div_msg.innerHTML = `Você ainda não morou num ${Numero}º bairro!`;
+            }
+        }else{
+            div_msg.innerHTML = `Digite um número maior que 0!`
+        }
+
+    }
+
+</script>

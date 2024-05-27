@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 13</title>
+</head>
+
+<body>
+    <h1>Futebol</h1>
+    <select id="select_combo">
+        <option value="#" selected disabled>Escolha um campo</option>
+        <option value="Vitória">Vitória</option>
+        <option value="Empate">Empate</option>
+        <option value="Derrota">Derrota</option>
+    </select>
+    <button onclick="Registrar()">Registrar jogo</button> <br><br>
+    Qual jogo deseja saber o resultado: <input oninput="Analisar()" id="input_jogoDesejado" type="text"> <br><br>
+    <div id="div_msg"></div> <br><br>
+    <div id="div_exibir"></div>
+
+</body>
+
+</html>
+<script>
+    var ListaJogos = [];
+    var Vitoria = 0;
+    var Empate = 0;
+    var Derrota = 0;
+    var Pontos = 0;
+    var QtdJogos = 0;
+    function Registrar() {
+        var Resultado = select_combo.value;
+        ListaJogos.push(Resultado);
+        QtdJogos++;
+        div_msg.innerHTML = `${ListaJogos}`;
+
+        if (Resultado == "Vitória") {
+            Vitoria++;
+            Pontos = Pontos + 3;
+        } else if (Resultado == "Empate") {
+            Empate++;
+            Pontos = Pontos + 1;
+        } else if (Resultado == "Derrota") {
+            Derrota++;
+        }
+
+        var Aproveitamento = (Pontos / (QtdJogos * 3)) * 100;
+        div_msg.innerHTML = `  O time teve: ${Vitoria} vitórias, <br>
+         ${Empate} empates, <br>
+         ${Derrota} derrotas  <br>
+Pontuação total: ${Pontos} pontos  <br>
+Aproveitamento: ${Aproveitamento} %`;
+    }
+
+    function Analisar() {
+        var JogoPesquisado = Number(input_jogoDesejado.value);
+
+        if (JogoPesquisado > 0) {
+
+            var JogoAtual = JogoPesquisado - 1;
+            div_exibir.innerHTML = "";
+
+            for (var index = 0; index < ListaJogos.length; index++) {
+                if (index == JogoAtual) {
+                    var Resultado = ListaJogos[index];
+                    var ResultadoTexto = "";
+                    if (Resultado == "Vitória") {
+                        ResultadoTexto = "Ganhou";
+                    } else if (Resultado == "Empate") {
+                        ResultadoTexto = "Empatou";
+                    } else if (Resultado == "Derrota") {
+                        ResultadoTexto = "Perdeu";
+                    }
+                    div_exibir.innerHTML = `No ${JogoPesquisado}º jogo, o time ${ResultadoTexto} <br>`;
+                    return;
+                }
+            }
+            div_exibir.innerHTML = `Não foi cadastrado um ${JogoPesquisado}º jogo <br>`;
+        } else {
+            div_exibir.innerHTML = "";
+        }
+    }
+</script>

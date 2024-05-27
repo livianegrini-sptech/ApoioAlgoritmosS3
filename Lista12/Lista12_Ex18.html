@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 Exercicio 18</title>
+</head>
+
+<body>
+    <h1>Músicas</h1>
+    Músicas <input id="input_musica" type="text">
+    <button onclick="Cadastrar()">Cadastrar</button>
+    <button onclick="Exibir()">Exibir</button> <br><br>
+    De: <input id="input_inicio" type="text">
+    Até: <input id="input_fim" type="text">
+    <button onclick="Filtrar()">Filtrar</button> <br><br>
+    <div id="div_exibir"></div> <br>
+    <div id="div_exibir2"></div>
+</body>
+
+</html>
+
+<script>
+    var ListaMusicas = [];
+    function Cadastrar() {
+        var Musica = input_musica.value;
+
+        if (Musica != "") {
+            ListaMusicas.push(Musica);
+        } else {
+            alert(`Preencha os campos`);
+        }
+    }
+
+    function Exibir() {
+        if (ListaMusicas.length > 0) {
+            div_exibir.innerHTML = "";
+            for (var index = 0; index < ListaMusicas.length; index++) {
+                div_exibir.innerHTML += `${ListaMusicas[index]}<br>`;
+            }
+
+        } else {
+            alert(`Preencha os campos`);
+        }
+    }
+
+    function Filtrar() {
+        var Inicio = Number(input_inicio.value);
+        var Fim = Number(input_fim.value);
+
+        if (Inicio > 0 && Fim <= ListaMusicas.length) {
+            Inicio = Inicio - 1;
+            Fim = Fim - 1;
+
+            div_exibir2.innerHTML = "";
+
+            for (var index = Inicio; index <= Fim; index++) {
+                div_exibir2.innerHTML += `${ListaMusicas[index]}<br>`;
+            }
+        }else{
+            alert(`Insira números válidos!`)
+        }
+
+
+    }
+</script>

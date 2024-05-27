@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 02</title>
+</head>
+
+<body>
+    <h1>Viagens</h1>
+    Destino de viagem: <input id="input_destino" type="text"> 
+    <button onclick="AdicionarNaLista()">Adicionar</button> <br><br>
+    <button onclick="VerificarPrimeira()">Primeira Viagem</button>
+    <button onclick="VerificarTerceira()">Terceira Viagem</button>
+    <button onclick="VerificarUltima()">Última Viagem</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var ListaDestinos = [];
+    function AdicionarNaLista() {
+        var Destino = input_destino.value;
+        ListaDestinos.push(Destino);
+    }
+
+
+    function VerificarPrimeira() {
+
+        if (ListaDestinos.length == 0) {
+            div_msg.innerHTML = `Ainda não viajou`;
+        } else {
+            div_msg.innerHTML = `${ListaDestinos[0]}<br>`
+        }
+    }
+
+    function VerificarTerceira() {
+
+        if (ListaDestinos.length < 3) {
+            div_msg.innerHTML = `Ainda não fez a terceira viagem`;
+        }else {
+            div_msg.innerHTML = `${ListaDestinos[2]}<br>`
+        }
+    }
+
+    function VerificarUltima() {
+
+        if (ListaDestinos.length == 0) {
+            div_msg.innerHTML = `Ainda não viajou`;
+        } else{
+            div_msg.innerHTML = `${ListaDestinos[ListaDestinos.length - 1]}<br>`
+        }
+    }
+</script>

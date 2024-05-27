@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 08</title>
+</head>
+
+<body>
+    <h1>Alunos</h1>
+    Nome Aluno: <input id="input_filme" type="text">
+    <button onclick="CadastrarFilme()">Cadastrar Filme</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var ListaFilmes = [];
+    function CadastrarFilme() {
+        var Filme = input_filme.value;
+        ListaFilmes.push(Filme);
+        div_msg.innerHTML = "";
+
+        var TamanhoFrase = ListaFilmes.length;
+
+        for (var index = TamanhoFrase - 1; index >= 0; index--) {
+            var FilmeAtual = ListaFilmes[index];
+
+            div_msg.innerHTML += `${FilmeAtual}<br><br>`;
+
+        }
+
+    }
+</script>

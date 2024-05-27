@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style> 
+    .h1{
+        color: black;
+    }
+    </style>
+    <body>
+    <div id="tela1">
+        <h1 class="h1"> Seja bem vindo ao Banco KNAB </h1>
+        <br> 
+    
+    <h2 class="titulo2"> Simulação de Empréstimos e Investimentos </h2>
+    Entre com os dados da sua conta: <br> 
+    <input id="input_conta"  class="digitar" type="text" placeholder="Conta"> 
+    <input id="input_digito"  class="digitar" type="text" placeholder="Digito"> 
+    <input id="input_senha"  class="digitar" type="password" placeholder="Senha"> 
+    <br> <br> 
+    <button onclick="simular()"> Simular </button> <br> 
+    </div>
+
+    <div id="tela2"> 
+        <body>
+        
+            <h1 class="h1"> O Banco KNAB é a sua melhor opção </h1>
+            <br> 
+        
+        <h2 class="titulo2"> Empréstimos e Investimentos com as melhores taxas do mercado </h2>
+        
+        Valor da Operação: 
+        <input id="input_valor"  class="digitar" type="text" placeholder="Conta"> 
+        
+        <br> <br> 
+        <select id="select_operacao"> 
+            <option selected disabled value="#"> Selecione a Operação </option>
+            <option value="1"> Empréstimo </option>
+            <option value="2"> Envestimento </option>
+        </select> 
+        <select id="select_prazo"> 
+            <option selected disabled value="#"> Selecione o Prazo </option>
+            <option value="1"> Curto Prazo </option>
+            <option value="2"> Médio Prazo </option>
+            <option value="3"> Longo Prazo </option>
+        </select> 
+        <br> <br> 
+        
+        <button onclick=mostrar()> Mostrar o resultado </button>
+        <button onclick=voltar()> Voltar a simulação </button><br> 
+        <div id="div_mensagem1"> </div>
+
+    </div>
+    
+</body>
+</html>
+<script> 
+tela2.style.display = 'none'
+function simular(){
+    var conta = input_conta.value; 
+    var digito = Number(input_digito);
+    var senha = input_senha.value;
+     resto = conta % 10;
+    if(conta != 0){
+        if(digito == resto){
+            if((digito >= 0 && digito <= 3 && senha == "manaus") ||
+                (digito >= 4 && digito <= 7 && senha == "recife") || 
+                (digito > 7 && senha == "fortaleza")){
+                
+                tela1.style.display = 'none';
+                tela2.style.display = 'block'; 
+                }else{ 
+                alert("ERRO AO TENTAR SIMULAR!")
+            }
+        }                
+    }
+}
+
+
+var contador = 0;
+function mostrar(){
+    var prazo = select_prazo.value; 
+    var operacao = select_operacao.value; 
+    var ValorOperacao = input_valor.value;
+    if(prazo == 1 || prazo == 2)
+    alert("Esta operação está condicionada ao seu perfil")
+    if(operacao == 1){
+        contador++;
+        if(prazo == 1){
+            var juros = ValorOperacao * 0.24;
+        }else if(prazo == 2){
+            var juros = ValorOperacao * 0.16;
+        }else{
+            var juros = ValorOperacao * 0.1;
+        }
+        div_mensagem1.innerHTML += `<br> Simulação ${contador} - Para o empréstimo de R$${ValorOperacao} no ${prazo}
+        prazo será cobrado os juros de R$ ${juros} ao ano` 
+      }else {
+        contador++;
+        if(prazo == 1){
+            var rendimento = ValorOperacao * 0.05;
+        }else if(prazo == 2){
+            var rendimento = ValorOperacao * 0.08;
+        }else{
+            var rendimento = ValorOperacao * 0.12;
+        }
+        div_mensagem1.innerHTML += `<br> Simulação ${contador} - Para o empréstimo de R$${ValorOperacao} no ${prazo}
+        prazo será cobrado os rendimento de R$ ${rendimento} ao ano` 
+      }
+    }
+    function voltar(){
+        div_mensagem1.innerHTML = ` `
+    }
+</script>

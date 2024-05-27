@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div_pagina1">
+        <h1>Seja bem vindo ao Banco KNAB</h1> <br><br>
+        <h2>Simulação de Empréstimos e Investimentos</h2> <br><br>
+        <h3>Entre com os dados de sua conta: </h3> <br><br>
+        <input placeholder="Conta" id="input_conta" type="text">
+        <input placeholder="Dígito" id="input_digito" type="text">
+        <input placeholder="Senha" id="input_senha" type="password"> <br><br>
+        <button onclick="Simular()">Simular</button>
+    </div>
+    <div id="div_pagina2">
+        <h1>O Banco KNAB é sua melhor opção</h1> <br><br>
+        <h2>Empréstimos e Investimentos com as melhores taxas do mercado</h2> <br><br>
+        <h3>Entre com os dados de sua simulação: </h3> <br><br>
+        Valor da Operação: <input id="input_valor" type="text"> <br><br>
+        <select id="select1">
+            <option value="#" disabled selected>Selecione a opção</option>
+            <option value="Emprestimo">Empréstimo</option>
+            <option value="Investimento">Investimento</option>
+        </select>
+        <select id="select2">
+            <option value="#" disabled selected>Selecione a prazo</option>
+            <option value="Curto">Curto</option>
+            <option value="Medio">Médio</option>
+            <option value="Longo">Longo</option>
+        </select> <br><br><br>
+        <button onclick="CalcularResultado()">Mostrar o Resultado</button> <br><br>
+        <button onclick=Voltar()> Voltar a simulação </button><br> 
+        <div id="div_mensagem"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    div_pagina2.style.display = 'none';
+
+    function Simular() {
+        var Conta = Number(input_conta.value);
+        var Digito = Number(input_digito.value);
+        var Senha = input_senha.value;
+
+        if (Conta != 0) {
+            if (Conta % 10 == Digito) {
+                if ((Digito == 0 || Digito == 1 || Digito == 2 || Digito == 3) && Senha == 'manaus') {
+                    div_pagina1.style.display = 'none';
+                    div_pagina2.style.display = 'block';
+                } else if ((Digito == 4 || Digito == 5 || Digito == 6 || Digito == 7) && Senha == 'recife') {
+                    div_pagina1.style.display = 'none';
+                    div_pagina2.style.display = 'block';
+                } else if (Senha == 'fortaleza') {
+                    div_pagina1.style.display = 'none';
+                    div_pagina2.style.display = 'block';
+                } else {
+                    alert('Erro!');
+                }
+
+            }
+        }
+    }
+
+    var Numero = 0;
+
+    function CalcularResultado() {
+        // var ValorPrazo = select2.value;
+        var Prazo = select2.value;
+        var Operacao = select1.value;
+        var Valor = Number(input_valor.value);
+      
+
+        if (Prazo == 'Curto' || Prazo == 'Medio') {
+            alert('Esta operação está condicionada ao seu perfil');
+        }
+        if (Operacao == 'Emprestimo') {
+            Numero++;
+            if (Prazo == 'Curto') {
+                var Juros = Valor * 0.24;
+            } else if (Prazo == 'Medio') {
+                var Juros = Valor * 0.16;
+            } else {
+                var Juros = Valor * 0.1;
+            }
+            div_mensagem.innerHTML += `<br> Simulação ${Numero} - Para o empréstimo de R$${Valor} no ${Prazo}
+        prazo será cobrado os juros de R$ ${Juros} ao ano`
+        } else {
+            Numero++;
+            if (Prazo == 'Curto') {
+                var Rendimento = Valor * 0.05;
+            } else if (Prazo == 'Medio') {
+                var Rendimento = Valor * 0.08;
+            } else {
+                var Rendimento = Valor * 0.12;
+            }
+            div_mensagem.innerHTML += `<br> Simulação ${Numero} - Para o empréstimo de R$${Valor} no ${Prazo}
+        prazo será cobrado os rendimento de R$ ${Rendimento} ao ano`
+        }
+    }
+    function Voltar(){
+        div_mensagem.innerHTML = ` `;
+    }
+</script>

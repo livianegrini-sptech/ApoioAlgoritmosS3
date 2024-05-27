@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece</title>
+</head>
+
+<body>
+    Episódio que deseja começar assistindo: <input id="input_inicial" type="number"><br>
+
+    Quantidade de tempo disponível: <input id="input_tempo" type="number"><br>
+
+    Unidade de tempo em:
+    <select id="select_unidadeTempo">
+        <option value="#" selected disabled>Selecione uma opção</option>
+        <option value="1">Horas</option>
+        <option value="2">Minutos</option>
+    </select><br>
+
+    Pular abertura?
+    <select id="select_abertura">
+        <option value="#" selected disabled>Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
+    </select><br>
+
+    Pular encerramento?
+    <select id="select_encerramento">
+        <option value="#" selected disabled>Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
+    </select><br>
+    <button onclick="Validar()">Assistir Episódios</button>
+</body>
+
+</html>

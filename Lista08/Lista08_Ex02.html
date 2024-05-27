@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 08 - Exercicio 02</title>
+</head>
+<body>
+    <h1>Processo Seletivo</h1>
+    Nota do ENEM: <input id="input_notaENEM" type="text"> <br><br> 
+    Nota do vestibular interno: <input id="input_notaVest" type="text"> <br><br>
+    <button onclick="Avaliar()">Avaliação</button> <br><br>
+</body>
+</html>
+<script>
+    function Avaliar() {
+        var NotaENEM = input_notaENEM.value;
+        var NotaVestibular = input_notaVest.value;
+
+        if (NotaENEM >= 800 || NotaVestibular >= 700) {
+            alert(`Parabéns! Aprovado`);
+        }
+        else{
+            alert(`Tente semestre que vem!`);
+        }
+    }
+</script>

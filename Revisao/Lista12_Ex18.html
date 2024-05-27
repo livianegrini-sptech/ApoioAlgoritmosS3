@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisao 1</title>
+</head>
+
+<body>
+    <!-- a) O usuário informa os nomes das músicas que mais gosta e clica em "Cadastrar"; 
+
+b) Ao clicar em "Exibir", as músicas vão aparecendo uma abaixo da outra, abaixo do botão. 
+
+c) Tenha dois campos "De..." e "Até...", que recebem um intervalo de dois números crescentes.
+
+d) Ao clicar em "Filtrar", deve exibir as músicas que estão dentro daquele intervalo.
+
+OBS: se o usuário informar "de 1 até 5", deve mostrar da primeira música até a quinta música da lista. -->
+
+    <h1>Músicas</h1>
+
+    Musica: <input id="input_musica" type="text">
+    <button onclick="Cadastrar()">Cadastrar</button>
+    <button onclick="Exibir()">Exibir</button> <br><br>
+    De: <input id="input_inicio" type="text">
+    Até: <input id="input_fim" type="text">
+    <button onclick="Filtrar()">Filtrar</button> <br><br>
+    <div id="div_exibir"></div>
+
+</body>
+
+</html>
+
+<script>
+    var ListaMusicas = [];
+
+    function Cadastrar() {
+        var Musica = input_musica.value;
+
+        if (Musica != "") {
+            ListaMusicas.push(Musica);
+            input_musica.value = "";
+        }else{
+            alert(`Insira uma música para continuar!`);
+        }
+    }
+
+    function Exibir() {
+        
+        div_exibir.innerHTML = "";
+
+        if (ListaMusicas.length > 0) {
+            for (var index = 0; index < ListaMusicas.length; index++) {
+                div_exibir.innerHTML += `${ListaMusicas[index]}<br>`;
+            }
+          
+        }else{
+            alert(`Insira músicas para continuar!`);
+        }
+    }
+
+    function Filtrar() {
+        var Inicio = Number(input_inicio.value);
+        var Fim = Number(input_fim.value);
+
+        if (Inicio > 0 && Fim > 0 && Fim <= ListaMusicas.length) {
+            Inicio = Inicio - 1;
+            Fim = Fim - 1;
+
+            div_exibir.innerHTML = "";
+            for (var index = Inicio; index <= Fim; index++) {
+                div_exibir.innerHTML += `${ListaMusicas[index]}<br>`;
+            }
+          
+        }else{
+            alert(`Insira os dados corretamente!`);
+        }
+        
+    }
+</script>

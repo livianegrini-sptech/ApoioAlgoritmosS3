@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 Exercicio 19</title>
+</head>
+<body>
+    <h1>Filmes</h1>
+    Nome do filme <input id="input_filme" type="text"> 
+    <button onclick="Cadastrar()">Cadastrar</button> 
+    <button onclick="Exibir()">Listar Filmes</button> <br><br>
+    De: <input id="input_inicio" type="text"> 
+    Até: <input id="input_fim" type="text"> 
+    <button onclick="Filtrar()">Filtrar</button> <br><br>
+    <div id="div_exibir"></div> <br><br>
+    <div id="div_exibir2"></div> <br><br>
+    <div id="div_exibir3"></div> <br><br>
+</body>
+</html>
+
+<script>
+    var ListaFilmes = [];
+    function Cadastrar() {
+        var Filme = input_filme.value;
+
+        if (Filme != "") {
+            ListaFilmes.push(Filme);
+
+            div_exibir.innerHTML = `Você já assistiu ${ListaFilmes.length} filmes!<br>`;
+
+        }else{
+            alert(`Preencha os campos`);
+        }
+
+
+    }
+
+    function Exibir() {
+        if (ListaFilmes.length > 0) {
+
+            div_exibir2.innerHTML = "";
+
+            var Tamanho = ListaFilmes.length - 1;
+            div_exibir2.innerHTML += `Filmes: <br>`
+            for (var index = Tamanho ; index >= 0 ; index--) {
+                div_exibir2.innerHTML += `${ListaFilmes[index]}<br>`;
+            }
+   
+        }else{
+            alert(`Preencha os campos`);
+        }
+    }
+
+    function Filtrar() {
+        var Inicio = Number(input_inicio.value);
+        var Fim = Number(input_fim.value);
+
+        Inicio = Inicio - 1;
+        Fim = Fim - 1;
+
+        div_exibir3.innerHTML = "";
+ 
+        div_exibir3.innerHTML += `Filmes: <br>`
+        for (var index = Fim; index >= Inicio; index--) {
+            div_exibir3.innerHTML += `${ListaFilmes[index]}<br>`;
+        }
+
+    }
+</script>

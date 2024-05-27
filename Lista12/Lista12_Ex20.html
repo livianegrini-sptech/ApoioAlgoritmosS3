@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 Exercício 20</title>
+</head>
+
+<body>
+    <h1>Produtos</h1>
+    Preço Produto <input id="input_preco" type="number">
+    Nome Produto <input id="input_nome" type="text">
+    <button onclick="Cadastrar()">Cadastrar</button><br><br>
+    <button onclick="Atualizar()">Atualizar Estoque</button><br><br>
+    <select id="select_opcoes">
+        <option value="#" selected disabled>Selecione um valor</option>
+        <option value="1">Preços acima de</option>
+        <option value="2">Preços abaixo de</option>
+    </select>
+
+    Valor: <input id="input_valor" type="number">
+    <button onclick="FiltrarProdutos()">Filtrar Produtos</button> <br><br>
+
+    <div id="div_exibir"></div> <br><br>
+    <div id="div_exibir2"></div>
+</body>
+
+</html>
+
+<script>
+    var ListaPrecos = [];
+    var ListaNomes = [];
+    var PrecosAcima = [];
+    var PrecosAbaixo = [];
+    var PrecoTotal = 0;
+
+    function Cadastrar() {
+        var Preco = Number(input_preco.value);
+        var Produto = input_nome.value;
+
+        if (Preco > 0 && Produto.length >= 3) {
+            ListaPrecos.push(Preco);
+            ListaNomes.push(Produto);
+
+            PrecoTotal = PrecoTotal + Preco;
+
+            alert(`Produto cadastrado com sucesso!`);
+        } else if (Preco <= 0) {
+            alert(`Insira um preço válido!`);
+        } else {
+            alert(`Insira um nome válido!`);
+        }
+    }
+
+    function Atualizar() {
+
+        if (ListaNomes.length > 1) {
+            div_exibir.innerHTML += `Você tem ${ListaNomes.length} produtos cadastrados em estoque: <br>`
+
+            for (let index = 1; index <= ListaNomes.length; index++) {
+                div_exibir.innerHTML += `${index}. ${ListaNomes[index - 1]} - R$${ListaPrecos[index - 1]} <br>`
+            }
+
+            div_exibir.innerHTML += `Seu estoque vale R$${PrecoTotal} <br>`;
+        } else {
+            alert(`Insira os dados!`);
+        }
+
+    }
+
+    function FiltrarProdutos() {
+        var Selecao = Number(select_opcoes.value);
+        var Numero = Number(input_valor.value);
+
+        div_exibir2.innerHTML = "";
+
+        if (Selecao > 0 && Numero > 0) {
+            //acima
+            if (Selecao == 1) {
+                for (var index = 0; index < ListaPrecos.length; index++) {
+                    if (ListaPrecos[index] > Numero) {
+                        PrecosAcima.push(ListaPrecos[index])
+                    }
+                }
+
+                div_exibir2.innerHTML = `Precos Acima: ${PrecosAcima}<br>`
+            } else {
+                //abaixo
+                for (var index = 0; index < ListaPrecos.length; index++) {
+                    if (ListaPrecos[index] < Numero) {
+                        PrecosAbaixo.push(ListaPrecos[index])
+                    }
+                }
+
+                div_exibir2.innerHTML = `Precos Abaixo: ${PrecosAbaixo}<br>`
+            }
+
+            PrecosAcima = [];
+            PrecosAbaixo = [];
+        }else{
+            alert(`Selecione uma opção e insira um valor!`);
+        }
+
+    }
+</script>

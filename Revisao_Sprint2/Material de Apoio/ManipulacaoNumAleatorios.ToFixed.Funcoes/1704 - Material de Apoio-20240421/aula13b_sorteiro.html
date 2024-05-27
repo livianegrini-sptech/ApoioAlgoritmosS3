@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Analise os resultados abaixo e diga o que está acontecendo</h2>
+    <button onclick="sortear()">Sortear</button> <br><br>
+    <div id="div_result"></div>
+</body>
+</html>
+<script>
+    function sortear() {
+        var ax_num = Math.random();
+        var ax_num2 = ax_num * 10;
+        div_result.innerHTML += `Número sorteado = ${(ax_num)} - Número transformado ${ax_num2} - O número arredondado  ${ax_num2.toFixed()} <br> `;
+    }
+</script>

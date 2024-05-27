@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Altura: <input type="text" id="input_altura"> <br>
+    <!-- Cor do Cabelo: <input type="text" id="input_cor"> <br> -->
+    
+    <select id="select_cor">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Preto</option>
+        <option value="2">Vermelho</option>
+        <option value="3">Amarelo</option>
+        <option value="4">Castanho</option>
+    </select>
+
+    <button onclick="verificar()">Deu match?</button>
+
+    <div id="div_imagem"></div>
+
+    
+
+</body>
+</html>
+
+<script>
+    function verificar () {
+        var altura = Number(input_altura.value);
+        var cor = select_cor.value;
+
+        console.log("A cor selecionada foi: " + cor);
+
+        if (cor == "#") {
+            alert("Selecione uma cor válida!");
+        } else {
+            if (altura < 1.85) {
+                if (cor == 3 || cor == 4) {
+                    div_imagem.innerHTML = `<img src="https://img.freepik.com/fotos-gratis/retrato-de-um-jovem-satisfeito-comemorando-o-sucesso_171337-10186.jpg" alt="">`;
+                } else {
+                div_imagem.innerHTML = `<img style="width: 100px" src="https://img.freepik.com/fotos-premium/homem-triste-e-deprimido-cobrindo-o-rosto_121826-326.jpg" alt="">
+                `;
+                }
+            } else {
+                div_imagem.innerHTML = `<img style="width: 100px" src="https://img.freepik.com/fotos-premium/homem-triste-e-deprimido-cobrindo-o-rosto_121826-326.jpg" alt="">
+                `;
+            }
+        }
+    }
+</script>

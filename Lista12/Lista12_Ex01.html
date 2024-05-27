@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 01</title>
+</head>
+
+<body>
+    <h1>Busca de Frutas na Lista</h1>
+    Digita o nome de uma fruta: <input id="input_nomeFruta" type="text"> <br>
+    <button onclick="Analisar()">Pesquisar</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var ListaFrutas = ['uva','pera','maçã'];
+    function Analisar() {
+        Fruta = input_nomeFruta.value;
+
+        var Contem = ListaFrutas.indexOf(Fruta);
+        
+        if (Contem == -1) {
+            // ListaFrutas.push(Fruta);
+            div_msg.innerHTML = `Não existe a fruta ${Fruta} na lista<br>`;
+
+        } else {
+            div_msg.innerHTML = `A fruta ${Fruta} existe na lista<br>`;
+            // div_msg.innerHTML += `${ListaFrutas}<br>`;
+        }
+    }
+</script>

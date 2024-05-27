@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 10 - Ex 20</title>
+</head>
+
+<body>
+    <h1>Depósitos</h1>
+    Quantidade de depósitos: <input id="input_qtd" type="number"> <br><br>
+    valor de cada depósito: <input id="input_valor" type="number"> <br><br>
+    <button onclick="Calcular()">Acompanhar grana</button> <br><br>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function Calcular() {
+        var Quantidade = Number(input_qtd.value);
+        var Valor = Number(input_valor.value);
+        var Total = 0;
+
+        for (var index = 1; index <= Quantidade; index++) {
+
+            if (index % 3 == 0) {
+                Total = (Total + Valor) * 1.01;
+                div_mensagem.innerHTML += `${index}º Mês: R$ ${Total} <br><br>`
+            }else{
+                Total = Total + Valor;
+                div_mensagem.innerHTML += `${index}º Mês: R$ ${Total} <br><br>`
+            }
+        }
+
+        div_mensagem.innerHTML += `Total guardado: ${Total}`
+    }
+</script>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aninhamento de IF</title>
+</head>
+
+<body>
+    <h1>Análise de Idade</h2>
+        Informe a idade da pessoa:
+        <input id="input_idade">
+        <button onclick="analisar()">Analisar a Idade</button> <br><br>
+        <button onclick="finalizar()">Finalizar a Análise e Reiniciar</button>
+</body>
+
+</html>
+<script>
+    var maior = 0
+    var menor = 0
+    var total = 0
+
+    /* PARTE 1 ==> MOSTRANDO MAIS UM ATALHO MATEMÁTICO
+    
+        function analisar() {
+            var idade = Number(input_idade.value);
+            if (idade >= 18) {
+                maior = maior + 1;
+                alert ('Total de pessoas maior de idade = ' + maior);
+            } else {
+                // a linha abaixo foi escrita com um atalho matemático onde:
+                // variavel++ é usado para somar 1 ao conteúdo da variável (incremento)
+                // variavel-- é usado para subtrair 1 do conteúdo da variável (decremento)
+                menor++;
+                alert ('Total de pessoas menor de idade = ' + menor);
+            }
+            total += idade;
+        }
+        function finalizar() {
+            alert(`A média das idades informadas é ${total / (maior + menor)}`);
+            maior = 0;
+            menor = 0;
+            total = 0;
+        }
+    */
+
+
+
+
+    /* PARTE 2 ==> MOSTRANDO O ANINHAMENTO DE IFs
+
+        Observe que na função abaixo, no bloco da condição verdadeira foi 
+            inserida mais uma estrutura de decisão.
+
+        Esse é o conceito de ANINHAMENTO DE IF onde uma estrutura de decisão está
+            inserida em uma das saídas (verdadeira ou falsa) de outra estrutura de 
+            decisão.
+    
+    var maior_civil = 0;
+
+    function analisar() {
+        var idade = Number(input_idade.value);
+        if (idade >= 18) {
+            if (idade >= 21) {
+                maior_civil++;
+                alert('Total de pessoas maior de idade civil = ' + maior_civil);
+            } else {
+                maior++;
+                alert('Total de pessoas maior de idade penal = ' + maior);
+            }
+        } else {
+            menor++;
+            alert('Total de pessoas menor de idade = ' + menor);
+        }
+        total += idade;
+    }
+    function finalizar() {
+        alert(`A média das idades informadas é ${total/(maior+menor+maior_civil)}`);
+        maior = 0;
+        maior_civil = 0
+        menor = 0;
+        total = 0;
+    }
+    */
+
+
+
+
+
+    /* PARTE 3 ==> MOSTRANDO O ANINHAMENTO DE IFs no ELSE
+
+       Observe que na função abaixo, que o aninhamento ocorreu na saída falsa
+       do primeiro IF
+
+       Reforçando.... A aninhamento de IF pode ser feito tanto na condição
+       verdadeira como na condição falsa com nas duas condições
+
+    var menor_16 = 0;
+
+    function analisar() {
+        var idade = Number(input_idade.value);
+        if (idade >= 18) {
+            maior++;
+            alert('Total de pessoas maior de idade = ' + maior);
+        } else {
+            if (idade >= 16) {
+                menor++;
+                alert('Total de eleitores menor de idade = ' + menor);
+            } else {
+                menor_16++;
+                alert('Total de pessoas menores de 16 anos = ' + menor_16);
+            }
+        }
+        total += idade;
+    }
+    function finalizar() {
+        alert(`A média das idades informadas é ${total / (maior + menor + menor_16)}`);
+        maior = 0;
+        menor = 0;
+        menor_16 = 0;
+        total = 0;
+    }
+    */
+
+
+    /* PARTE 4 ==> MOSTRANDO O ELSE IF
+    
+       Observe que na função abaixo, o aninhamento de IF foi feito com
+       ELSE IF - essa é uma forma de codificação mais simples onde 
+       o aninhamento pela condição falsa fica com menos chaves abertas
+    
+    var menor_16 = 0;
+
+    function analisar() {
+        var idade = Number(input_idade.value);
+        if (idade >= 18) {
+            maior++;
+            alert('Total de pessoas maior de idade = ' + maior);
+        } else if (idade >= 16) {
+            menor++;
+            alert('Total de eleitores menor de idade = ' + menor);
+        } else {
+            menor_16++;
+            alert('Total de pessoas menores de 16 anos = ' + menor_16);
+        }
+        total += idade;
+    }
+    function finalizar() {
+        alert(`A média das idades informadas é ${total / (maior + menor + menor_16)}`);
+        maior = 0;
+        menor = 0;
+        menor_16 = 0;
+        total = 0;
+    }
+    */
+
+
+
+
+    /* ATENÇÃO!!!
+    
+    Observe que a estrutura ELSE IF comporta somente uma outra estrutura de decisão.
+    
+    Porém, a segunda estrutura de decisão pode também comportar outra estrutura ELSE IF
+    
+    */
+    var menor_16 = 0;
+
+    function analisar() {
+        var idade = Number(input_idade.value);
+        if (idade >= 18) {
+            maior++;
+            alert('Total de pessoas maior de idade = ' + maior);
+        } else {
+            alert ('este alerta impede a utilização do ELSE IF');
+            if (idade >= 16) {
+                menor++;
+                alert('Total de eleitores menor de idade = ' + menor);
+            } else {
+                menor_16++;
+                alert('Total de pessoas menores de 16 anos = ' + menor_16);
+            }
+        }
+        total += idade;
+    }
+    function finalizar() {
+        alert(`A média das idades informadas é ${total / (maior + menor + menor_16)}`);
+        maior = 0;
+        menor = 0;
+        menor_16 = 0;
+        total = 0;
+    }
+</script>

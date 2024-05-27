@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 10</title>
+</head>
+
+<body>
+    <h1>Projetos</h1>
+    Ônibus: <input id="input_onibus" type="text">
+    <button onclick="ListarOnibus()">Gravar Busão</button> <br><br>
+    Pesquisar Linha: <input id="input_pesquisar" type="text">
+    <button onclick="PesquisarOnibus()">Pesquisar</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var ListaOnibus = [];
+  
+    function ListarOnibus() {
+        var Onibus = input_onibus.value;
+        ListaOnibus.push(Onibus);
+
+        div_msg.innerHTML = "";
+
+
+        for (var index = ListaOnibus.length - 1; index >= 0; index--) {
+            var OnibusAtual = ListaOnibus[index];
+
+            div_msg.innerHTML += `<br>${OnibusAtual}`;
+
+        }
+    }
+
+    function PesquisarOnibus() {
+        var OnibusPesq = input_pesquisar.value;
+        var Tamanho = ListaOnibus.length;
+        var Lista2 = [];
+
+        for (var index = 0; index < Tamanho; index++) {
+            if (OnibusPesq == ListaOnibus[index]) {
+                Lista2.push(index + 1);
+            }
+
+        }
+
+        if (Lista2.length > 0) {
+            div_msg.innerHTML = `Você já pegou essa linha ${Lista2.length} vezes, nessa ordem: ${Lista2} `;
+        } 
+        else {
+            div_msg.innerHTML = ` Você nunca pegou essa linha`;
+        }
+        if (Lista2.length == 1) {
+            div_msg.innerHTML = `Você já pegou essa linha 1 vez, na ordem: ${Lista2}`;
+        } 
+    }
+
+
+</script>

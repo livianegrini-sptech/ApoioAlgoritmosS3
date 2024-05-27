@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Qual a sua idade? <input type="text" id="input_idade" oninput="numero()"><br>
+    <div id="div_exibir"></div>
+
+</body>
+</html>
+
+<script>
+function numero() {
+var idade = input_idade.value;
+
+div_exibir.innerHTML = "";
+    for (let index = 0; index <= idade; index++) {
+        if (index <= 4) {
+        div_exibir.innerHTML += `${index} anos (Primeira Infância)<br>`;
+    } else if (index <= 6 ) {
+        div_exibir.innerHTML += `${index} anos (Pré-escolar)<br>`;
+    } else if (index <= 10) {
+        div_exibir.innerHTML += `${index} anos (Pré-escolar)<br>`;
+    } else if (index <= 18) {
+        div_exibir.innerHTML += `${index} anos (Adolescência)<br>`;
+    } else if (index <= 50) {
+        div_exibir.innerHTML += `${index} anos (Adulto)<br>`;
+    } else if (index <= 100) {
+        div_exibir.innerHTML += `${index} anos (Melhor idade)<br>`;
+    } else if (index > 100) {
+        div_exibir.innerHTML += '${index} anos (Matusalém)<br>';
+    }
+}
+}
+</script>

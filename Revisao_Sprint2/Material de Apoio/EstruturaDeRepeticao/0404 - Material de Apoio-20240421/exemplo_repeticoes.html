@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">Exibir</button>
+    <button onclick="exibir_performatico()">Exibir Performático</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    // acessa o HTML a cada repetição
+    function exibir() {
+        div_mensagem.innerHTML = ""; // limpa a div
+
+        for (var index = 1;  index <= 5000; index++) {
+            div_mensagem.innerHTML += `Você estudou por: ${index} minutos<br>`;
+        }
+    }
+    
+
+    // acumula todo o texto em uma variável auxiliar e acessa o HTML somente 1x ao final de todas as repetições
+    function exibir_performatico() {
+        var texto = ""; 
+        
+        for (var index = 1;  index <= 5000; index++) {
+            texto += `Você estudou por: ${index} minutos<br>`;
+        }
+
+        console.log(texto);
+        div_mensagem.innerHTML = texto;
+    }
+
+    /*
+        Ambas as funções acima, fazem a mesma coisa: contam de 0 até 5000.
+        A única diferença entre elas, é a forma que irá executar a exibição da contagem: 
+
+        Na função "exibir", ao utilizar "div_mensagem.innerHTML +=" dentro do FOR, o JS:
+            1. A cada repetição, percorre todo o documento HTML, buscando pelo elemento que possua um ID igual a "div_mensagem";
+            2. Caso encontre, acessa o conteúdo interior do elemento (innerHTML) para adicionar mais conteúdos;
+            3. Com isso, a cada repetição, tem um esforço grande para encontrar o elemento "div_mensagem" e adicionar conteúdo na div;
+            
+
+        Na função "exibir_performatico", ao criar a variável auxiliar "texto" e utilizar "texto +=" dentro do FOR, o JS: 
+            1. Antes das repetições, cria a variável auxiliar "texto", que se inicia como um texto vazio.
+            2. A cada repetição, incrementa a variável auxiliar "texto" com o novo conteúdo a ser exibido (índice atual);
+            3. Ao final de todas as repetições, acessa o HTML apenas UMA VEZ para atualizar a div com o texto acumulado na variável;
+            4. Com isso, a cada repetição, o JS atualiza a variável e ao final das repetições, acessa o HTML apenas uma vez para "passar a limpo" o conteúdo da variável para a div;
+
+
+        Em algoritmos, tem problemas utilizar somente o "div_mensagem.innerHTML" e nunca usar essa variável auxiliar? 
+        - Nenhum problema! Nunca utilizaremos um número de repetições que seja tão grande, a ponto de quebrar a execução do programa.
+
+    */
+</script>

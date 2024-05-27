@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Temperatura: <input type="text" id="input_temperatura"> <br>
+    <button onclick="analisar()">Analisar</button>
+</body>
+
+</html>
+
+<!-- 
+    Receba uma temperatura;
+    Caso ela esteja entre 20 e 24, exiba "temperatura confortável";
+    Caso esteja fora do intervalo, exiba "temperatura desconfortável";
+    -->
+<script>
+    function analisar() {
+        var temp = input_temperatura.value;
+
+        if (temp >= 20 && temp <= 24) {
+            alert("temperatura confortável");
+        } else {
+            alert("temperatura desconfortável");
+        }
+
+        /*  
+            O operador lógico && ("and" / "e") serve para realizar uma operação de "conjunção", 
+            ou seja, verificar se duas ou mais condições são verdadeiras AO MESMO TEMPO. 
+
+            Ao utilizar esse operador em uma estrutura de decisão "if", 
+            o bloco de código será executado somente caso TODAS AS CONDIÇÕES CONJUNTAS SEJAM VERDADEIRAS!
+
+            Normalmente, utilizamos esse operador lógico em situações cotidianas, como: 
+                "se estiver calor E ensolarado, vou ao parque!" 
+                    - ou seja, se estiver frio ou nublado ou chovendo, não iria ao parque
+                "se tiver login E senha, vou entrar no facebook" 
+                    - ou seja, se tiver somente o "login" sem a "senha", não conseguiria entrar e vice-versa
+
+            O exemplo de código abaixo representa o mesmo cenário do código acima, porém realizando 2 validações separadas, 
+            com mensagens de erro para cada saída inválida
+
+            Exemplo da mesma validação, porém com ANINHAMENTO DE ESTRUTURAS DE DECISÃO:
+                    if (temperatura >= 20) {
+                        if (temperatura < 24) {
+                            alert("temperatura confortável");
+                        } else {
+                            alert("Temperatura desconfortável");
+                        }
+                    } else {
+                        alert("Temperatura desconfortável");
+                    }
+
+            Exemplo da mesma validação, porém com ELSE IF (aninhamento no else):
+                    if (temp > 24) {
+                        alert("Temperatura desconfortável");
+                    } else if (temp < 20) {
+                        alert("Temperatura desconfortável");
+                    } else {
+                        alert("Temperatura confortável");
+                    }
+
+            Como pode ver, o operador lógico && serve para diminuir as linhas de código e facilitar a leitura/entendimento do código
+        */
+    }
+</script>

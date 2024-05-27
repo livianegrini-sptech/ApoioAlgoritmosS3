@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 09</title>
+</head>
+
+<body>
+    <h1>Projetos</h1>
+    Nome Projeto: <input id="input_projeto" type="text">
+    <button onclick="CadastrarProjeto()">Registrar projeto</button> 
+    <button onclick="ListarProjeto()">Mostrar projeto</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    var ListaProjetos = [];
+    function CadastrarProjeto() {
+        var Projeto = input_projeto.value;
+        ListaProjetos.push(Projeto);
+
+        var QtdProjetos = ListaProjetos.length;
+
+        if (QtdProjetos >= 0 && QtdProjetos <= 4) {
+            div_msg.innerHTML = `Você já fez ${QtdProjetos} projetos. Por isso você é um profissional Júnior<br>`
+        } else if (QtdProjetos >= 5 && QtdProjetos <= 12) {
+            div_msg.innerHTML = `Você já fez ${QtdProjetos} projetos. Por isso você é um profissional Pleno<br>`
+        } else if (QtdProjetos >= 13) {
+            div_msg.innerHTML =  `Você já fez ${QtdProjetos} projetos. Por isso você é um profissional Sênior<br>`
+        }
+    }
+
+    function ListarProjeto() {
+        for (var index = ListaProjetos.length - 1; index >= 0; index--) {
+            var ProjetoAtual = ListaProjetos[index];
+
+            div_msg.innerHTML += `<br>${ProjetoAtual}`;
+
+        }
+    }
+</script>

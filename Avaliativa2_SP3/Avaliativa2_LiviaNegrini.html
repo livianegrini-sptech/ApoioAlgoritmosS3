@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburg & Ria</title>
+</head>
+
+<body>
+    <h1>Hamburg & Ria</h1>
+    Tipo de corte: <input id="input_tipoCorte" type="text"> <br><br>
+    Peso em gramas: <input id="input_peso" type="text"> <br><br>
+    Preço por kilo: <input id="input_preco" type="number"> <br><br>
+    <button onclick="Adicionar()">Adicionar Carne</button>
+    <button onclick="Preparar()">Preparar Blend</button> <br><br>
+    <div id="div_exibir"></div>
+</body>
+
+</html>
+<script>
+    var ListaCarnes = [];
+    var ListaPesos = [];
+    var ListaPrecosKg = [];
+
+    var PrecoUnitario = [];
+    var PercentualPeso = [];
+
+    var PesoTotal = 0;
+    var PrecoTotal = 0;
+
+    function Adicionar() {
+        var TipoCorte = input_tipoCorte.value;
+        var Peso = Number(input_peso.value);
+        var PrecoKg = Number(input_preco.value);
+
+        var ProcurarCarne = ListaCarnes.indexOf(TipoCorte);
+
+        if (TipoCorte != "" && Peso != "" && PrecoKg > 0) {
+            if (ProcurarCarne == -1) {
+                alert("Carne Adicionada!")
+
+                var Preco = (Peso * PrecoKg) / 1000;
+
+                PesoTotal = PesoTotal + Peso;
+                PrecoTotal = PrecoTotal + Preco;
+
+                ListaCarnes.push(TipoCorte);
+                ListaPesos.push(Peso);
+                ListaPrecosKg.push(PrecoKg);
+                PrecoUnitario.push(Preco);
+            } else {
+                alert("Essa carne já foi inserida!")
+            }
+        } else {
+            alert("Preencha todos os campos!");
+        }
+    }
+
+    function Preparar() {
+        if (ListaCarnes.length > 0 && ListaPesos.length > 0 && ListaPrecosKg.length > 0) {
+            div_exibir.innerHTML = "";
+            for (let index = 0; index < ListaCarnes.length; index++) {
+                var Percentual = (ListaPesos[index] * 100) / PesoTotal;
+
+                div_exibir.innerHTML += `Carne: ${ListaCarnes[index]}<br>
+            Preço: ${PrecoUnitario[index].toFixed(2)} reais<br>
+            Percentual do Hamburguer: ${Percentual.toFixed()}%<br><br>`;
+            }
+
+            div_exibir.innerHTML += `Preço Total: ${PrecoTotal.toFixed(2)} reais<br>
+        Peso Total: ${PesoTotal}g<br>`;
+        }else{
+            alert("Preencha todos os campos!");
+        }
+
+    }
+</script>

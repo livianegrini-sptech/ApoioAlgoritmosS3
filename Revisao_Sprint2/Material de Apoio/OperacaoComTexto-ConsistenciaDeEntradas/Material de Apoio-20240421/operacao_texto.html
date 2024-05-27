@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Operações com Texto</h1>
+    Digite uma Frase: <input type="text" id="input_frase"> <br>
+    <button onclick="analisar()">Analisar</button>
+    <div id="div_mensagem"></div>
+
+    <!-- a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b -->
+</body>
+</html>
+
+<script>
+    function analisar() {
+        var frase = input_frase.value;
+
+        var tamanho_frase = frase.length; // captura o comprimento da frase
+
+        div_mensagem.innerHTML = `Quantidade de caracteres: ${tamanho_frase}`;
+
+        if (tamanho_frase < 8) {
+            div_mensagem.innerHTML += "<br>A frase NÃO POSSUI 8 letras";
+        } else {
+            div_mensagem.innerHTML += "<br>A frase possui AO MENOS 8 letras";
+        }
+
+
+        var comeca_com_a = frase.startsWith("a") || frase.startsWith("A"); 
+        div_mensagem.innerHTML += `<br>Começa com "a"? ${comeca_com_a}`; 
+
+        var termina_com_com = frase.endsWith(".com");
+        div_mensagem.innerHTML += `<br>Termina com ".com"? ${termina_com_com}`;
+
+        var primeira_letra = frase[0];
+        div_mensagem.innerHTML += `<br>Primeira letra: ${primeira_letra}`; 
+
+        var terceira_letra = frase[2];
+        div_mensagem.innerHTML += `<br>Terceira letra: ${terceira_letra}`; 
+
+        // pneumoultramicroscopicossilicovulcanoconiótico
+        // 0123456789                                   43
+        var indice_ultima = tamanho_frase - 1; // 43
+        var ultima_letra = frase[  indice_ultima  ];
+        div_mensagem.innerHTML += `<br>Última letra: ${ultima_letra}`
+
+        var indice_arroba = frase.indexOf('@');
+        div_mensagem.innerHTML += `<br>Índice de @: ${indice_arroba}`;
+
+        if (indice_arroba < 0) {
+            div_mensagem.innerHTML += `<br>Não possui @ nessa frase!`;
+        } else {
+            div_mensagem.innerHTML += `<br>Possui @ nessa frase!`;
+        }
+
+        var frase_maiuscula = frase.toUpperCase();
+        div_mensagem.innerHTML += `<br>Frase Maiúscula: ${frase_maiuscula}`;
+        
+        var frase_minuscula = frase.toLowerCase();
+        div_mensagem.innerHTML += `<br>Frase Minúscula: ${frase_minuscula}`;
+
+        if (frase_minuscula == "teste") {
+            alert("VOCÊ DIGITOU 'teste'");
+        }
+
+        div_mensagem.innerHTML += `<br>Frase Original: ${frase}`;
+
+
+        var frase_com_arroba_no_primeiro_a = frase.replace('a', '@');
+        var frase_com_arroba_no_primeiro_a = frase.replace('a', '@');
+        div_mensagem.innerHTML += `<br>Frase com @ no primeiro 'a': ${frase_com_arroba_no_primeiro_a}`;
+
+        // frase = '1321@BC123@@@@'
+        var frase_com_arroba = frase.replaceAll('a', '@');
+        div_mensagem.innerHTML += `<br>Frase com @ em todos os 'a': ${frase_com_arroba}`;
+
+        var frase_sem_espacos = frase.replaceAll(' ', '')
+        div_mensagem.innerHTML += `<br>Frase sem ESPAÇO: ${frase_sem_espacos}`;
+
+        // var frase_formatada = frase.replaceAll('A', 4); // troca A por 4 da frase original
+        // var frase_formatada2 = frase_formatada.replaceAll('E', 3); // troca E por 3 da frase formatada
+        // var frase_formatada3 = frase_formatada2.replaceAll('S', 5); // troca S por 5 da frase formatada 2
+
+        // faz a mesma coisa das 3 variáveis acima, porém tudo de uma vez
+        var frase_formatada = frase.replaceAll("A", 4).replaceAll("E", 3).replaceAll("S", 5).replaceAll(" ", "_____").replaceAll("a", 4).replaceAll("e", 3).replaceAll("s", 5);
+
+        div_mensagem.innerHTML += `<br>Frase Formatada: ${frase_formatada}`;
+    }
+</script>

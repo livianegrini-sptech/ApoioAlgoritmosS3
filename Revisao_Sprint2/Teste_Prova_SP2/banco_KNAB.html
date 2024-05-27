@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco KNAB</title>
+</head>
+
+<body>
+    <div id="div_tela1">
+        <h1>Seja bem vindo ao Banco KNAB</h1> <br><br>
+        <h2>Sumilação de Empréstimos e Investimentos</h2> <br><br>
+        <h3>Entre com os dados de sua conta:</h3> <br>
+        <input placeholder="Conta" id="input_conta" type="text">
+        <input placeholder="Dígito" id="input_digito" type="text">
+        <input placeholder="Senha" id="input_senha" type="password"> <br><br><br>
+        <button onclick="Simular()">Simular</button>
+    </div>
+
+    <div id="div_tela2">
+        <h1>O Banco KNAB é a sua melhor opção</h1>
+        <h2>Empréstimos e Investimentos com as melhores taxas do mercado</h2>
+        <h3>Entre com os dados da sua simulação</h3> <br>
+        Valor da Operação: <input placeholder="Valor" id="input_valor" type="number"> <br><br>
+        <select id="select_operacao">
+            <option value="#" selected disabled>Selecione a Operação...</option>
+            <option value="empréstimo">Empréstimo</option>
+            <option value="investimento">Investimento</option>
+        </select>
+        <select id="select_prazo">
+            <option value="#" selected disabled>Selecione o Prazo...</option>
+            <option value="curto">Curto</option>
+            <option value="médio">Médio</option>
+            <option value="longo">Longo</option>
+        </select><br><br><br>
+        <button onclick="MostrarResultado()">Mostrar o Resultado</button> <br><br>
+
+        <div id="div_msg2"></div>
+    </div>
+
+</html>
+
+<script>
+    div_tela2.style.display = 'none';
+
+    function Simular() {
+
+        var Conta = Number(input_conta.value);
+        var Digito = Number(input_digito.value);
+        var Senha = input_senha.value;
+
+        var Resto = Conta % 10;
+
+        if (Conta > 0 && Digito == Resto) {
+            if ((Digito >= 0 && Digito <= 3) && Senha == 'manaus') {
+                div_tela1.style.display = 'none';
+                div_tela2.style.display = 'block';
+                // div_tela1.innerHTML = "";
+                // div_tela2.innerHTML += "Oii";
+
+            } else if ((Digito >= 4 && Digito <= 7) && Senha == 'recife') {
+                div_tela1.style.display = 'none';
+                div_tela2.style.display = 'block';
+
+            } else {
+                if (Senha == 'fortaleza') {
+                    div_tela1.style.display = 'none';
+                    div_tela2.style.display = 'block';
+                }
+            }
+        }
+    }
+
+    var Contador = 0;
+    function MostrarResultado() {
+        var Valor = Number(input_valor.value);
+        var Prazo = select_prazo.value;
+        var Operacao = select_operacao.value;
+        var Juros = 0;
+        var Rendimento;
+
+        if (Operacao == 'empréstimo') {
+            Contador = Contador + 1;
+            if (Prazo == 'curto') {
+                alert("Esta operação está condicionada ao seu perfil");
+                Juros = Valor * 0.24;
+            } else if (Prazo == 'médio') {
+                alert("Esta operação está condicionada ao seu perfil");
+                Juros = Valor * 0.16;
+            } else {
+                Juros = Valor * 0.1;
+            }
+            div_msg2.innerHTML += `Simulação ${Contador} – Para o empréstimo de R$${Valor} no ${Prazo} prazo será cobrado os juros de R$ ${Juros} ao ano<br>`;
+
+        } else {
+            Contador = Contador + 1;
+            if (Prazo == 'curto') {
+                alert("Esta operação está condicionada ao seu perfil");
+                Rendimento = Valor * 0.05;
+            } else if (Prazo == 'médio') {
+                alert("Esta operação está condicionada ao seu perfil");
+                Rendimento = Valor * 0.08;
+            } else {
+                Rendimento = Valor * 0.12;
+            }
+            div_msg2.innerHTML += `Simulação ${Contador} – Investindo R$${Valor} no ${Prazo} prazo o seu rendimento será de R$ ${Rendimento} ao ano<br>`;
+        }
+
+    }
+</script>

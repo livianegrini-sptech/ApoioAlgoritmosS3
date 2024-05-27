@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 08 - Exercicio 01</title>
+</head>
+<body>
+    <h1>Frutas</h1>
+    Nome da fruta que chegou na mesa: <input id="input_nome" type="text"> <br><br>
+    <button onclick="VerificarFruta()" >Vai comer?</button>
+</body>
+</html>
+<script>
+    function VerificarFruta() {
+        var Fruta = input_nome.value;
+
+        if (Fruta == 'uva' || Fruta == 'abacaxi') {
+            alert(`Sim, vai comer ${Fruta}`)
+        }else{
+            alert(`A fruta ${Fruta} ela não come`)
+        }
+    } 
+</script>

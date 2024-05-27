@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoposto Anil</title>
+</head>
+
+<body>
+    <h2>Anil Registros</h2>
+    <h3>Registro de Entrada</h3>
+    <p>Digite o nome do Produto comprado:</p>
+    <input type="text" id="NomeProduto">
+    <p>Digite o preço de Compra do produto:</p>
+    <input type="text" id="QuantidadeComprada">
+    <br><br>
+    <div id="exibir1"></div>
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br><br>
+    <h3>Registro de Saída</h3>
+    <p>Digite o nome do Produto Vendido:</p>
+    <input type="text" id="nomeProdutoVen">
+    <p>Digite a Quantidade de Compra do produto vendido:</p>
+    <input type="text" id="QtdProdutoVen">
+    <br><br>
+    <button onclick="relatorio()">Relatório de estoque</button>
+    <br><br>
+    <div id="exibir"></div>
+</body>
+
+</html>
+
+<script>
+    listaDeProduto = [];
+    listaDeQuantidade = [];
+
+    function cadastrar() {
+        exibir1.innerHTML ="";
+        var Produto = NomeProduto.value;
+        var Quantidade = QuantidadeComprada.value;
+
+        var indiceProduto = listaDeProduto.indexOf(Produto);
+
+        if (Produto == "" || Quantidade < 0 ) {
+            alert("Preencha os campos corretamente")
+        } else {
+            if (indiceProduto == -1) {
+                listaDeProduto.push(Produto);
+                listaDeQuantidade.push(Quantidade);
+                // alert("Produto Cadastrado com sucesso!")
+      
+
+                NomeProduto.value = '';
+                QuantidadeComprada.value = '';
+
+            } else if(indiceProduto != -1) {
+                for (var index = 0; index < listaDeProduto.length; index++) {
+                    if (Produto == listaDeProduto[index]) {
+                        listaDeQuantidade[index] = Number(listaDeQuantidade[index]) + Number(Quantidade);
+                        // alert("Quantidade de produto atualizada com sucesso!")
+                        exibir1.innerHTML += `<h2>ESTOQUE</h2> Produto: ${listaDeProduto[index]} <br>
+                                        Quantidade comparda: ${listaDeQuantidade[index]} <br>`
+                    }
+                }
+                NomeProduto.value = '';
+                QuantidadeComprada.value = '';
+            }
+            console.log(listaDeProduto);
+            console.log(listaDeQuantidade);
+        }
+    }
+    function relatorio() {
+        exibir.innerHTML = "";
+
+        var NomeProduto = nomeProdutoVen.value;
+        var QtdProdVen = Number(QtdProdutoVen.value);
+
+        for (var index = 0; index < listaDeProduto.length; index++) {
+            if(NomeProduto == listaDeProduto[index]){
+                var venda = Number(listaDeQuantidade[index]) - QtdProdVen;
+                exibir.innerHTML += `<h2>Venda</h2> Produto: ${NomeProduto} <br>
+                                    Quantidade Vendida: ${QtdProdVen} <br>
+                                    Estoque de ${NomeProduto}: ${venda}<br>`
+            }
+        }
+    }
+</script>
+<!-- 17. O autoposto de abastecimento Anil Osag faz o controle de estoque de produto sendo:
+
+1.      Cada compra (entrada) de produto é identificada com o nome do produto e a quantidade comprada
+
+2.      Cada venda (saída) de produto é identificada com o nome do produto e a quantidade vendida.
+
+3.      Quando um produto comprado não existe nos controles é gerado uma nova “ficha” para controlar o estoque desse produto
+
+4.      Naturalmente, não é possível vender mais do que existe em estoque e nem vender um produto que não temos.
+
+Faça um programa para a família Osag controlar e exibir o saldo em estoque dos produtos do seu auto posto Anil. OBS: não é necessário controlar 
+as movimentações de estoque e sim somente as saídas
+ -->

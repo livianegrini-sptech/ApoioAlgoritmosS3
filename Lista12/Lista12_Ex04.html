@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 04</title>
+</head>
+<body>
+    <h1>Filmes</h1>
+    Nome Filme: <input id="input_filme" type="text">
+    <button onclick="CadastrarFilme()">Cadastrar Filme</button> <br><br>
+    <button onclick="ListarFavoritos()">Ver Favoritos</button> <br><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    var ListaFilmes = [];
+    function CadastrarFilme() {
+        var Filme = input_filme.value;
+        ListaFilmes.push(Filme)
+        div_msg.innerHTML = `Filme Cadastrado!`;
+    }
+
+    function ListarFavoritos() {
+        div_msg.innerHTML = `${ListaFilmes}<br><br>`; 
+
+        div_msg.innerHTML += `Total: ${ListaFilmes.length}<br><br>`; 
+
+        var UltimoFilme = ListaFilmes.length -1;
+        div_msg.innerHTML += `O que filme que mais gosta é: ${ListaFilmes[0]}<br>`; 
+        div_msg.innerHTML += `E desses, o que menos gosta é: ${ListaFilmes[UltimoFilme]}<br>`; 
+    }
+</script>

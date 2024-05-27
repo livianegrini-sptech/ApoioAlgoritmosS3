@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operador OU</title>
+</head>
+<body>
+    <h1>Controle de Gratuidade</h1>
+    informe a idade do cidadão:
+    <input id="ipt_idade"> <br><br>
+    <button onclick="verificar()">Verificar</button>
+    <button onclick="limpar()">Limpar Mensagens</button>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+/*
+O operador lógico || ("or" / "ou") serve para realizar uma operação de "conjunção", 
+    ou seja, verificar se pelo menos uma da condições é verdadeira.  
+
+Ao utilizar esse operador em uma estrutura de decisão "if", 
+    o bloco de código será executado se PELO MENOS UMA DAS CONDIÇÕES CONJUNTAS SEJA VERDADEIRA!
+
+    Basta que uma das condições seja true (verdadeiro) para que a resposta das condições conjuntas dê true (verdadeiro)
+
+    Normalmente, utilizamos esse operador lógico em situações cotidianas, como: 
+        "se estiver frio OU chovendo, vou ficar em casa comendo pipoca!" 
+            - ou seja, se estiver frio - vou ficar em casa
+                se estiver chovendo - vou ficar em casa
+                se estiver frio e chovendo - vou ficar em casa
+                só vou sair se não estiver frio e nem chovendo
+        
+    O exemplo de código abaixo representa o mesmo cenário do código acima, porém realizando 2 validações separadas, 
+    com mensagens de erro para cada saída inválida
+    */
+    function verificar() {
+        var idade = Number(ipt_idade.value);
+        if (idade <= 10 && idade >= 60) {
+            div_msg.innerHTML += 'oferecer gratuidade ao cidadão';
+        } else {
+            div_msg.innerHTML += 'esse cidadão não tem direito a gratuidade';
+        }
+        ipt_idade.value = '';  // só para limpar o valor da input
+    }
+    function limpar() {  // só para limpar as msgs da tela
+        div_msg.innerHTML = '';
+    }
+</script>

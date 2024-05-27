@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 12 - Exercício 17</title>
+</head>
+
+<body>
+    <h1>Anil Osag</h1>
+    <h2>Compra</h2>
+    Produto: <input id="input_produto" type="text">
+    Quantidade: <input id="input_quantidade" type="text">
+    <button onclick="Cadastrar()">Adicionar</button> <br><br>
+    <h2>Venda</h2>
+    Produto: <input id="input_produtoVenda" type="text">
+    Quantidade: <input id="input_quantidadeVenda" type="text">
+    <button onclick="Vender()">Vender</button> <br><br>
+    <div id="div_exibir"></div>
+</body>
+
+</html>
+<script>
+    var ListaProdutos = [];
+    var ListaQuantidade = [];
+    var Qtdd = 0;
+
+    function Cadastrar() {
+        var Produto = input_produto.value;
+        var Quantidade = Number(input_quantidade.value);
+
+        var Existe = ListaProdutos.indexOf(Produto);
+
+        if (Produto != null && Quantidade > 0) {
+            if (Existe == -1) {
+                ListaProdutos.push(Produto);
+                ListaQuantidade.push(Quantidade);
+                // Qtdd = Qtdd + Quantidade;
+                div_exibir.innerHTML = `Produto ${Produto} comprado! Quantidade comprada: ${Quantidade}<br>`;
+
+            } else if (Existe != -1) {
+
+                for (var index = 0; index < ListaProdutos.length; index++) {
+                    if (Produto == ListaProdutos[index]) {
+                        ListaQuantidade[index] = Number(ListaQuantidade[index]) + Quantidade;
+                        div_exibir.innerHTML = `Produto ${Produto} comprado! Quantidade comprada: ${ListaQuantidade[index]}<br>`;
+                    }
+
+                }
+            }
+            console.log(ListaProdutos);
+            console.log(ListaQuantidade);
+
+        } else {
+            alert("Insira os campo corretamente")
+        }
+    }
+
+    function Vender() {
+        var Produto2 = input_produtoVenda.value;
+        var QtdVenda = Number(input_quantidadeVenda.value);
+
+        var Produto = ListaProdutos.indexOf(Produto2);
+
+        if (Produto2 != "" || QtdVenda > 0) {
+            if (Produto > -1 && QtdVenda <= ListaQuantidade[Produto]) {
+                for (var index = 0; index < ListaProdutos.length; index++) {
+
+                    if (ListaProdutos[index] == Produto2) {
+                        ListaQuantidade[index] = Number(ListaQuantidade[index]) - QtdVenda;
+                        div_exibir.innerHTML += `Produto ${Produto2} vendido! Quantidade atual: ${ListaQuantidade[index]}<br>`;
+                    }
+                }
+            }
+            else {
+                div_exibir.innerHTML += `Digite um número válido!<br>`;
+            }
+        }else{
+            alert(`Insira os dados para continuar!`);
+        }
+
+
+
+
+    }
+</script>

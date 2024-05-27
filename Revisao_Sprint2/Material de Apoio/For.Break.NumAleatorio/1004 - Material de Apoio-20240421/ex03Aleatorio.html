@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Aleatório</title>
+</head>
+
+<body>
+    <h2>Mostrando aleatórios</h2>
+    Entre com a quantidade de números
+    <input id="ipt_qtde"> <br><br>
+    <button onclick="sortear()">Executar</button>
+    <br><br>
+    <div id="div_result">Resultdo <br></div>
+</body>
+
+</html>
+<script>
+    /*  uma das alternativas para encontrar o maior / menor número de um conjunto
+        - crie um variável para guardar o maior número que estiver passando
+            inicialize essa variável com o valor mais baixo que possa existir
+        - crie um variável para guardar o menor número que estiver passando
+            inicialize essa variável com o valor mais alto que possa existir
+        Dessa forma o primeiro número que passar será atribuido para essas duas 
+        variáveis
+     */
+    /*
+     function sortear() {
+        var ax_qtde = Number(ipt_qtde.value);
+        var ax_aleatorio = 0;
+        var acima = 0;
+        var abaixo = 0;
+        var maior = 0;
+        var menor = 1;
+        
+        for (var index = 0; index < ax_qtde; index++) {
+            
+            ax_aleatorio = Math.random();
+            
+            if (ax_aleatorio > maior) {
+                maior = ax_aleatorio;
+            }
+            if (ax_aleatorio < menor) {
+                menor = ax_aleatorio;
+            }
+            if (ax_aleatorio >= 0.5) {
+                div_result.innerHTML += `${ax_aleatorio} está na metade superior dos números <br>`;
+                acima++;
+            } else {
+                div_result.innerHTML += `${ax_aleatorio} está na metade inferior dos números <br>`;
+                abaixo++;
+            }
+        }
+        div_result.innerHTML += `TOTAL DE NÚMEROS SORTEADOS ACIMA DA METADE = ${acima} <br> TOTAL DE NÚMEROS SORTEADOS ABAIXO DA METADE = ${abaixo}`;
+    }
+    */
+
+    /* 
+        outra alternativa para encontrar o maior / menor número de um conjunto e:
+        - crie duas variáveis, uma para gruardar o maior número e outra para 
+        guardar o menor número, você pode inicializa-las com zeros.
+        - crie uma variável para identificar que você está manipulando o primeiro
+        número sorteado, para isso, inicialize ela com 'sim' e depois de fazer o 
+        tratamento do primeiro número atribua 'nao' para saber que o primeiro número 
+        já foi tratado.
+        - teste a variável acima se ela estiver com 'sim' atribua o número sorteado 
+        para as variáveis maior e menor - Moral da história - o primeiro número 
+        sorteado é ao mesmo tempo o maior e menor número sorteado até o momento.
+        - depois é só testar os números sorteados contra as variáveis maior e menor
+    */
+    function sortear() {
+        var ax_qtde = Number(ipt_qtde.value);
+        var ax_aleatorio = 0;
+        var acima = 0;
+        var abaixo = 0;
+        var maior = 0;
+        var menor = 1;
+        var primeiro = 'sim'
+        for (var index = 0; index < ax_qtde; index++) {
+            
+            ax_aleatorio = Math.random();
+            
+            if (primeiro == 'sim') {
+                maior = ax_aleatorio;
+                menor = ax_aleatorio;
+                primeiro = 'não'
+            }
+
+            if (ax_aleatorio > maior) {
+                maior = ax_aleatorio;
+            }
+            if (ax_aleatorio < menor) {
+                menor = ax_aleatorio;
+            }
+            if (ax_aleatorio >= 0.5) {
+                div_result.innerHTML += `${ax_aleatorio} está na metade superior dos números <br>`;
+                acima++;
+            } else {
+                div_result.innerHTML += `${ax_aleatorio} está na metade inferior dos números <br>`;
+                abaixo++;
+            }
+        }
+        div_result.innerHTML += `TOTAL DE NÚMEROS SORTEADOS ACIMA DA METADE = ${acima} <br> TOTAL DE NÚMEROS SORTEADOS ABAIXO DA METADE = ${abaixo}`;
+    }    
+</script>

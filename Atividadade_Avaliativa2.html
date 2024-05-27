@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Piece</title>
+</head>
+
+<body>
+    Qual o episódio deseja começar a assistir a série: <input id="input_episodioInicio" type="number"> <br><br>
+    Quantidade de tempo disponível: <input id="input_tempoDisponivel" type="number"> <br><br>
+    Unidade de tempo em:
+    <select id="select_unidadeTempo">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Horas</option>
+        <option value="2">Minutos</option>
+    </select> <br><br>
+    Pular a abertura?
+    <select id="select_pularAbertura">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
+    </select> <br><br>
+    Pular encerramento?
+    <select id="select_pularEncerramento">
+        <option selected disabled value="#">Selecione uma opção</option>
+        <option value="1">Sim</option>
+        <option value="2">Não</option>
+    </select> <br><br>
+    <button onclick="Validar()">Assistir Episódios</button><br><br>
+    <div id="div_exibir"></div>
+
+</html>
+<script>
+    function Validar() {
+        var EpisodioInicial = Number(input_episodioInicio.value)
+        var TempoDisponivel = Number(input_tempoDisponivel.value);
+        var UnidadeTempo = select_unidadeTempo.value;
+        var PularAbertura = select_pularAbertura.value;
+        var PularEncerramento = select_pularEncerramento.value;
+
+        // para saber quantos episódios o usuário consegue assistir
+        // TempoDisponivel/TempoEpisodio
+
+        if (EpisodioInicial >= 1 && EpisodioInicial <= 1100) {
+            if (UnidadeTempo == '1') {
+                TempoDisponivel = TempoDisponivel * 60;
+            }
+            if (PularAbertura == '2' && PularEncerramento == '2') {
+                TempoEpisodio = 24;
+            }
+            if (PularAbertura == '1' && PularEncerramento == '1') {
+                TempoEpisodio = 20;
+            }
+            if (PularAbertura == '1' && PularEncerramento == '2') {
+                TempoEpisodio = 22;
+            }
+            if (PularAbertura == '2' && PularEncerramento == '1') {
+                TempoEpisodio = 22;
+            }
+
+            var Episodios = TempoDisponivel / TempoEpisodio;
+
+            // (var Inicio = 1; Inicio <= duracaaototal && TempoDisponivel > 0; EpisodioInicial++)
+            for (var index = EpisodioInicial; index < Episodios; index++) {
+                div_exibir.innerHTML += `Episódio que está assistindo no momento: ${index} <br><br>`
+
+                for (var j = 1; j <= TempoEpisodio; j++) {
+
+                    if (TempoEpisodio == 24) {
+                        if (index >= 1 && index <= 2) {
+                            div_exibir.innerHTML += `Minuto ${j}: Assistindo Abertura<br><br>`
+                        } else if (index >= 23 && index <= 24) {
+                            div_exibir.innerHTML += `Minuto ${j}: Assistindo Encerramento<br><br>`
+                        } else {
+                            div_exibir.innerHTML += `Minuto ${j}: Assistindo o Episódio<br><br>`
+                        }
+                    } else if (TempoEpisodio == 22) {
+                        if (index >= 1 && index <= 2) {
+                            div_exibir.innerHTML += `Minuto ${j}: Assistindo Abertura<br><br>`
+                        } else if (index >= 23 && index <= 24) {
+                            div_exibir.innerHTML += `Minuto ${j}: Assistindo Encerramento<br><br>`
+                        } else {
+                            div_exibir.innerHTML += `Minuto ${j}: Assistindo o Episódio<br><br>`
+                        }
+                    } else if (TempoEpisodio == 20) {
+                        div_exibir.innerHTML += `Minuto ${j}: Assistindo o Episódio<br><br>`
+                    }
+
+                    TempoDisponivel = TempoDisponivel - 1;
+                    if (TempoDisponivel <= 0) {
+                        break;
+                    }
+                }
+
+
+            }
+
+            // for (let index = EpisodioInicial; TempoDisponivel > 2; EpisodioInicial++) {
+            //     div_exibir.innerHTML += `Episódio que está assistindo no momento: ${EpisodioInicial} <br><br>`
+            //     if (PularAbertura == '2' && PularEncerramento == '2') {
+            //         for (let index = 1; index <= 24; index++) {
+            //             if (index >= 1 && index <= 2) {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo Abertura<br><br>`
+            //             } else if (index >= 23 && index <= 24) {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo Encerramento<br><br>`
+            //             } else {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo o Episódio<br><br>`
+            //             }
+            //             TempoDisponivel = TempoDisponivel - 1;
+            //         }
+            //     }
+            //     if (PularAbertura == '1' && PularEncerramento == '1') {
+            //         for (let index = 1; index <= 20; index++) {
+            //             div_exibir.innerHTML += `Minuto ${index}: Assistindo o Episódio<br><br>`
+            //             TempoDisponivel = TempoDisponivel - 1;
+            //         }
+            //     }
+            //     if (PularAbertura == '1' && PularEncerramento == '2') {
+            //         for (let index = 1; index <= 22; index++) {
+            //             if (index >= 21 && index <= 22) {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo Encerramento<br><br>`
+            //             } else {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo o Episódio<br><br>`
+            //                 TempoDisponivel = TempoDisponivel - 1;
+            //             }
+            //         }
+            //     }
+            //     if (PularAbertura == '2' && PularEncerramento == '1') {
+            //         for (let index = 1; index <= 22; index++) {
+            //             if (index >= 1 && index <= 2) {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo Abertura<br><br>`
+            //             } else {
+            //                 div_exibir.innerHTML += `Minuto ${index}: Assistindo o Episódio<br><br>`
+            //                 TempoDisponivel = TempoDisponivel - 1;
+            //             }
+            //         }
+            //     }
+
+            // }
+
+        } else {
+            alert("O número do episódio é inválido");
+        }
+    }
+
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantos aleatórios? <input type="text" id="input_qtd"> <br>
+    <button onclick="gerar()">Gerar Aleatórios</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function gerar() {
+        div_mensagem.innerHTML = "";
+
+        var qtd = Number(input_qtd.value);
+
+        for (var index = 0; index < qtd; index++) {
+            var aleatorio = Math.random();
+
+            if (aleatorio >= 0.5) {
+                div_mensagem.innerHTML += `${aleatorio} - Está na metade superior <br>`;
+            } else { // < 0.5
+                div_mensagem.innerHTML += `${aleatorio} - Está na metade inferior <br>`;
+            }
+        }
+    }
+</script>

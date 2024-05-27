@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+    var portasAbertas = true; // pode ser true ou false;
+    var elevadorCheio = false; // pode ser true ou false;
+
+    /*
+        Se estiver com portas fechadas (se portasAbertas for false), eu NÃO posso entrar
+        Se estiver com portas abertas (se portasAbertas for true), eu posso entrar
+            Mesmo com portas abertas, se o elevador estiver cheio (se elevadorCheio for true), eu NÃO posso entrar 
+            Mas com portas abertas, se o elevador NÃO estiver cheio (se elevadorCheio for false), eu posso entrar 
+    
+
+        // ANINHAMENTO de IFs, onde só validará se o elevador está cheio caso a porta esteja aberta, pois um está dentro do outro
+        
+        if (portasAbertas == true) {
+|           if (elevadorCheio == true) {
+                alert("Não pode entrar, está cheio");
+            } else {
+                alert("Pode entrar, o elevador NÃO está cheio");
+            }
+        } else {
+            alert("Portas fechadas");
+        }
+    */
+  
+    // mesma lógica, porém invertendo as validações com else if
+    if (portasAbertas == false) {
+        alert("Portas fechadas");
+    } else if (elevadorCheio != true) { // valida se é diferente de true, ou seja, false
+        alert("Pode entrar, o elevador NÃO está cheio")
+    } else {
+        alert("Não pode entrar, está cheio");
+    }
+
+</script>

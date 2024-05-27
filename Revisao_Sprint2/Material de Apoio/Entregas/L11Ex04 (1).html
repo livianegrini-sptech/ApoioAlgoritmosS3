@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex. 4 - Lista 11</title>
+</head>
+
+<body>
+    <h1>Exercício 04, Lista 11 - Números Aleatórios - Quartis</h1>
+    <br>
+    <h3>Sistema de aleatoriedade, os quartis</h3>
+    <br><br>
+    Insira quantos números você quer que sejam gerados: <input type="text" id="input_qtd">
+    <br><br>
+    <button onclick="quartis()">Gerar</button>
+    <br><br>
+    <div id="div_msg"><br></div>
+</body>
+
+</html>
+<script>
+
+    function quartis() {
+        var num = 0;
+        var qtd = Number(input_qtd.value);
+
+        var cont1 = 0;
+        var cont2 = 0;
+        var cont3 = 0;
+        var cont4 = 0;
+        var maior1 = 0;
+        var maior2 = 0;
+        var maior3 = 0;
+        var maior4 = 0;
+        var menor1 = 1;
+        var menor2 = 1;
+        var menor3 = 1;
+        var menor4 = 1;
+
+        var msg = "";
+        var teste = "a";
+
+        div_msg.innerHTML = "";
+
+        for (var i = 0; i < qtd; i++) {
+
+            num = Math.random();
+
+            if (num >= 0.75) {
+                cont1 ++;
+                msg += `<br><br>${num} está no 1º Quartil`;
+
+                if (num < menor1) {
+                    menor1 = num;
+                }
+
+                if (num > maior1) {
+                    maior1 = num;
+                }
+
+            } else if (num >= 0.5) {
+                cont2++;
+                msg += `<br><br>${num} está no 2º Quartil`;
+
+                if (num < menor2) {
+                    menor2 = num;
+                }
+
+                if (num > maior2) {
+                    maior2 = num;
+                }
+
+            } else if (num < 0.5 && num > 0.25) {
+                cont3++;
+                msg += `<br><br>${num} está no 3º Quartil`;
+
+                if (num < menor3) {
+                    menor3 = num;
+                }
+
+                if (num > maior3) {
+                    maior3 = num;
+                }
+
+            } else {
+                cont4 ++;
+                msg += `<br><br>${num} está no 4º Quartil`;
+
+                if (num < menor4) {
+                    menor4 = num;
+                }
+
+                if (num > maior4) {
+                    maior4 = num;
+                }
+
+            }
+
+        }
+
+        if (menor1 == 1) {
+            menor1 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (menor2 == 1) {
+            menor2 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (menor3 == 1) {
+            menor3 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (menor4 == 1) {
+            menor4 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (maior1 == 0) {
+            maior1 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (maior2 == 0) {
+            maior2 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (maior3 == 0) {
+            maior3 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+        if (maior4 == 0) {
+            maior4 = "NENHUM NÚMERO SORTEADO.";
+        }
+
+
+        msg += `<br><br>1º QUARTIL <br><br>
+            TOTAL DE NÚMEROS SORTEADOS: ${cont1} <br><br>
+            MAIOR NÚMERO SORTEADO: ${maior1} <br><br>
+            MENOR NÚMERO SORTEADO: ${menor1} <br><br>
+            <br><br>2º QUARTIL <br><br>
+            TOTAL DE NÚMEROS SORTEADOS: ${cont2} <br><br>
+            MAIOR NÚMERO SORTEADO: ${maior2} <br><br>
+            MENOR NÚMERO SORTEADO: ${menor2} <br><br>
+            <br><br>3º QUARTIL <br><br>
+            TOTAL DE NÚMEROS SORTEADOS: ${cont3} <br><br>
+            MAIOR NÚMERO SORTEADO: ${maior3} <br><br>
+            MENOR NÚMERO SORTEADO: ${menor3} <br><br>
+            <br><br>4º QUARTIL <br><br>
+            TOTAL DE NÚMEROS SORTEADOS: ${cont4} <br><br>
+            MAIOR NÚMERO SORTEADO: ${maior4} <br><br>
+            MENOR NÚMERO SORTEADO: ${menor4} <br><br>
+        `
+
+        div_msg.innerHTML += `${msg}`;
+    }
+
+</script>

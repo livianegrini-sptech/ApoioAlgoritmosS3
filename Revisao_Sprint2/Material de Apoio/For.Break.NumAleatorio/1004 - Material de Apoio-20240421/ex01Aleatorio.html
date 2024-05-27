@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Aleatório</title>
+</head>
+<body>
+    <h2>Mostrando aleatórios</h2>
+    Entre com a quantidade de números 
+    <input id="ipt_qtde"> <br><br>
+    <button onclick="sortear()" >Executar</button>
+    <br><br>
+    <div id="div_result">Resultdo <br></div>
+</body>
+</html>
+<script>
+
+    function sortear() {
+        var ax_qtde = Number(ipt_qtde.value);
+        var ax_aleatorio = 0;
+        for (var index = 0; index < ax_qtde; index++) {
+            ax_aleatorio = Math.random();
+            if (ax_aleatorio >= 0.5) {
+                div_result.innerHTML += `${ax_aleatorio} está na metade superior dos números <br>`;
+            } else {
+                div_result.innerHTML += `${ax_aleatorio} está na metade inferior dos números <br>`;
+            }
+            
+        }  
+    }    
+</script>
